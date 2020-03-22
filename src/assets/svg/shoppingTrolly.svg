@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="34px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>6D842B1F-3DAC-4814-94F8-605F1822752B</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons+Indicators-/-Mid-Render-Icons-/-shopping_trolley">
+            <g id="shopping_trolley_mid">
+                <g id="Group" stroke-linecap="round" transform="translate(18.250000, 34.250000)" stroke="#E60000">
+                    <path d="M6.224875,1.275085 C7.59171,2.64192 7.59171,4.857985 6.224875,6.224835 C4.85804,7.59167 2.641975,7.59167 1.275125,6.224835 C-0.09171,4.858 -0.09171,2.641935 1.275125,1.275085 C2.64196,-0.09175 4.858025,-0.09175 6.224875,1.275085" id="path_1"></path>
+                    <path d="M18.224825,1.275085 C19.59166,2.64192 19.59166,4.857985 18.224825,6.224835 C16.85799,7.59167 14.641925,7.59167 13.275075,6.224835 C11.90824,4.858 11.90824,2.641935 13.275075,1.275085 C14.64191,-0.09175 16.857975,-0.09175 18.224825,1.275085" id="path_1"></path>
+                </g>
+                <polyline id="Shape" stroke="#666666" stroke-linecap="round" stroke-linejoin="round" points="4.5 6.5 11 6.5 19 29.5 37 29.5 43.5 11.5 12.74 11.5"></polyline>
+                <polygon id="Shape" points="0 0 48 0 48 48 0 48"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

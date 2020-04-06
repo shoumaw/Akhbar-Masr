@@ -1,6 +1,5 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 import { colors, fontSizes } from "./theme-constants";
-
 const theme = createMuiTheme({
 	props: {
 		MuiButtonBase: {
@@ -9,10 +8,16 @@ const theme = createMuiTheme({
 	},
 	palette: {
 		primary: {
-			main: colors.primaryColors.red
+			main: colors.primaryColors.maize
 		},
 		secondary: {
-			main: colors.secondary.purple
+			main: colors.secondary.cream
+		},
+		rumour:{
+			main: colors.secondary.rumour
+		},
+		legit:{
+			main: colors.secondary.legit
 		},
 		background: {
 			default: '#f2f2f2'
@@ -20,11 +25,12 @@ const theme = createMuiTheme({
 		text: {
 			primary: '#333',
 			secondary: '#666666',
-			purple: '#9c2aa0'
+			maize: '#COA8CO'
 		}
 	},
+
 	typography: {
-		fontFamily: "VodafoneRg",
+		fontFamily: "Monda, sans-serif",
 		fontSize: fontSizes.default,
 		color: '#333333',
 		caption: {

@@ -1,15 +1,15 @@
 export const colors = {
   primaryColors: {
-    maize: '#FFE66D',
+    maize: '#222222',
     text: "#333333"
   },
   secondary: {
     button: "#999999",
     text: "#333333",
     buttontext: "#ffffff",
-    cream: "#F6F6F6",
+    cream: "#ffffff",
     rumour: '#FF6B6B',
-    legit: '#4ECDC4',
+    legit: '#139b88',
     tooltip: "#fff",
     sliderHandle: "#fff",
     tooltipArrow: "#dfdfdf",

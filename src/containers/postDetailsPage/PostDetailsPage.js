@@ -1,8 +1,8 @@
 
-import React , {useEffect, useState}  from 'react';
+import React , {useEffect, useState, Fragment}  from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
-import {getComments} from '../../services/postListingApi'
+import {getCommentsApi} from '../../services/postListingApi'
 import AppBar from '../../components/common/AppBar'
 import List from '@material-ui/core/List';
 import Button from '@material-ui/core/Button';
@@ -13,6 +13,7 @@ import {Comment} from '../../components/common/postDetails/Comment'
 import {PostInfo} from '../../components/common/postDetails/PostInfo'
 import {PostContent} from '../../components/common/postDetails/PostContent'
 import { useLocation } from "react-router-dom";
+import { useAuth } from "../../components/hooks/useAuth";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,10 +41,13 @@ const useStyles = makeStyles(theme => ({
 
 export const PostDetailsPage = (props) => {
   const history = useHistory();
+  const {user} = useAuth();
   const [comments, setComments] = useState([])
   const {id, title, description, score, numComments, author, createdDate}  = useLocation().state;
   useEffect( () => {
-		getComments(id).then(data => {
+    if (!user)
+      return
+		getCommentsApi(user, id).then(data => {
       setComments(data)
     })},
 		[]
@@ -52,22 +56,26 @@ export const PostDetailsPage = (props) => {
   return (
     <div className={classes.root}>
       <AppBar/>
-      <div className={classes.buttonSection}>
-          <Button color="primary" variant="outlined" aria-label="back" className={classes.button} size="small" onClick ={() => history.goBack()}>
-            <ArrowBackRounded fontSize="inherit" />
-            <Typography className={classes.text}  variant="button">Go back to news page</Typography>
-          </Button>
-      </div>
-      <PostContent title={title} description={description}/>
-      <PostInfo author={author} createdDate={createdDate} score={score} numComments={numComments}/>
-      <Divider variant="middle" />
-      <div className={classes.commentsSection}>
-        <List dense>
-          {comments && comments.map(comment => (
-            <Comment author={comment.author} ups={comment.ups} downs={comment.downs} description={comment.description}/>
-          ))}
-        </List>
-      </div>
+      {user ? 
+      (<Fragment>
+        <div className={classes.buttonSection}>
+            <Button color="primary" variant="outlined" aria-label="back" className={classes.button} size="small" onClick ={() => history.goBack()}>
+              <ArrowBackRounded fontSize="inherit" />
+              <Typography className={classes.text}  variant="button">Go back to news page</Typography>
+            </Button>
+        </div>
+        <PostContent title={title} description={description}/>
+        <PostInfo author={author} createdDate={createdDate} score={score} numComments={numComments}/>
+        <Divider variant="middle" />
+        <div className={classes.commentsSection}>
+          <List dense>
+            {comments && comments.map(comment => (
+              <Comment author={comment.author} ups={comment.ups} downs={comment.downs} description={comment.description}/>
+            ))}
+          </List>
+        </div>  
+      </Fragment>) : 
+      (<Typography>Please sign in to view content!</Typography>)}
     </div>
   );
 }

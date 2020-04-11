@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
         "justifyContent": "center",
         "alignItems": "center",
         "perspective": "500px",
-        "background": "#FFE66D"
+        "background": "#222222"
     },
     "container": {
         "width": "250px",
@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
         "display": "flex",
         "placeContent": "center",
         "overflow": "hidden",
-        "background": "#333333",
+        "background": "#139b88",
         "borderRadius": "30px"
     },
     "item": {

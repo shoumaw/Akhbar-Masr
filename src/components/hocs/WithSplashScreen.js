@@ -8,7 +8,7 @@ const WithSplashScreen = (WrappedComponent) => {
           try {
               setTimeout(() => {
                   setLoading(false)
-          }, 1000)
+          }, 3000)
           } catch (err) {
               console.log(err);
               setLoading(false)

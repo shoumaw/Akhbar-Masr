@@ -10,19 +10,24 @@ import theme from "./theme";
 import { PostDetailsPage } from './containers/postDetailsPage/PostDetailsPage';
 import { Page404 } from './containers/page404/Page404';
 import WithSplashScreen from './components/hocs/WithSplashScreen'
+import { ProvideAuth } from "./components/hooks/useAuth";
+
+
 const { store } = configureStore();
 
 const App = () => {
   return (
     <Provider store={store}>
-    <MuiThemeProvider theme={theme}>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/"> <PostListingPage/>  </Route>
-            <Route exact path="/details/:newsId?"> <PostDetailsPage/> </Route>
-            <Route> <Page404/> </Route>
-          </Switch>
-        </BrowserRouter>
+      <MuiThemeProvider theme={theme}>
+        <ProvideAuth>
+          <BrowserRouter>
+            <Switch>
+              <Route exact path="/"> <PostListingPage/>  </Route>
+              <Route exact path="/details/:newsId?"> <PostDetailsPage/> </Route>
+              <Route> <Page404/> </Route>
+            </Switch>
+          </BrowserRouter>
+        </ProvideAuth>
       </MuiThemeProvider>
   </Provider>
   );

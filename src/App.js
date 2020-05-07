@@ -32,4 +32,4 @@ const App = () => {
   </Provider>
   );
 }
-export default WithSplashScreen(App);
+export default App;

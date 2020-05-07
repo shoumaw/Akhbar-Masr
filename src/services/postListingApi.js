@@ -39,7 +39,7 @@ export async function getPostsApi(user) {
 export async function getCommentsApi(user,postID) {
   if(!postID)
     return
-  const comments = await (await user.getSubmission(postID)).comments
+  const comments = await (await r.getSubmission(postID)).comments
   let data = []
   comments.forEach((comment)=>{
     data.push({

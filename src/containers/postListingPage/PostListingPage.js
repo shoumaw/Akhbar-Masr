@@ -7,13 +7,15 @@ import {Post} from '../../components/common/postListing/Post'
 import {getPostsApi} from '../../services/postListingApi'
 import { useAuth } from "../../components/hooks/useAuth";
 import Typography from '@material-ui/core/Typography';
-
+import Grid from '@material-ui/core/Grid';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import Toolbar from '@material-ui/core/Toolbar';
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
-    justifyContent: 'space-between',
+    flexGrow:1,
     backgroundColor: theme.palette.background.default,
-    height: "100vh"
+    height:"100%",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -22,10 +24,8 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   post: {
-    padding: 3,
-    textAlign: "center",
-    marginRight: 4,
-    marginTop: 10
+    height:"100%",
+    marginTop:"20px",
   }
 }));
 
@@ -34,7 +34,8 @@ export const PostListingPage = () => {
   const history = useHistory();
   const {user, signin} = useAuth();
   const classes = useStyles();
-  useEffect( () => {
+  let tempUser = true
+  /*useEffect( () => {
     if (!user && history.location.search.includes("?state=fe211bebc52eb3da9bef8db6e63104d3"))
     {
          signin().then((signedUser)=> {
@@ -43,29 +44,31 @@ export const PostListingPage = () => {
             setPosts(data)
           })
 
-         })}
-        else if(user){
+         })
+    }
+    else if(user){
           console.log("Getting posts")
           getPostsApi(user).then(data => {
             setPosts(data)
           })
         }},
 		[]
-	);
- /* useEffect( () => {
-    if (!user){
+	);*/
+ useEffect( () => {
+    if (!tempUser){
       console.log("user not defined")
-      return;
+      //return;
     }
     console.log("Getting Posts")
-		getPostsApi(user).then(data => {
+		getPostsApi(tempUser).then(data => {
       setPosts(data)
     })},
 		[]
-  );*/
+  );
   return (
     <div className={classes.root}>
-      <AppBar/>
+        <AppBar/>
+        <Toolbar/>
       {/*posts.map(post => (
         post.title
             ? (
@@ -73,14 +76,28 @@ export const PostListingPage = () => {
             )
             : null
       ))*/}
-      {user ?
-      posts.map(post => (
-        post.title
-            ? (
-              <Post className={classes.post} data = {post} onClick ={() => history.push(`/details/${post.id}`,post)}/>
-            )
-            : null
-      )): <Typography>Please sign in to view content!</Typography>}
+      <GridList cols={2} spacing={12}>
+          {tempUser ?
+          posts.map(post => (
+            post.title
+                ? (
+                  <GridListTile cols={2} rows={1}>
+                    <Post data = {post} onClick ={() => history.push(`/details/${post.id}`,post)}/>
+                  </GridListTile>
+                )
+                : null
+          )): <Typography>Please sign in to view content!</Typography>}
+      </GridList>
+       {/* <Grid container className={classes.post} justify="center" alignItems="stretch" direction="column" spacing={2} >
+          {user ?
+          posts.map(post => (
+            post.title
+                ? (
+                  <Post data = {post} onClick ={() => history.push(`/details/${post.id}`,post)}/>
+                )
+                : null
+          )): <Typography>Please sign in to view content!</Typography>}
+        </Grid>*/}
     </div>
   );
 }

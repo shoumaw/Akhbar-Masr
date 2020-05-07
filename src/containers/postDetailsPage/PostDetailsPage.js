@@ -18,6 +18,7 @@ import { useAuth } from "../../components/hooks/useAuth";
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    height:"100%"
   },
   text: {
     margin: theme.spacing(0.5),
@@ -42,12 +43,13 @@ const useStyles = makeStyles(theme => ({
 export const PostDetailsPage = (props) => {
   const history = useHistory();
   const {user} = useAuth();
+  let tempUser = true
   const [comments, setComments] = useState([])
   const {id, title, description, score, numComments, author, createdDate}  = useLocation().state;
   useEffect( () => {
-    if (!user)
+    if (!tempUser)
       return
-		getCommentsApi(user, id).then(data => {
+		getCommentsApi(tempUser, id).then(data => {
       setComments(data)
     })},
 		[]
@@ -56,7 +58,7 @@ export const PostDetailsPage = (props) => {
   return (
     <div className={classes.root}>
       <AppBar/>
-      {user ? 
+      {tempUser ? 
       (<Fragment>
         <div className={classes.buttonSection}>
             <Button color="primary" variant="outlined" aria-label="back" className={classes.button} size="small" onClick ={() => history.goBack()}>

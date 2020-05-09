@@ -69,35 +69,18 @@ export const PostListingPage = () => {
     <div className={classes.root}>
         <AppBar/>
         <Toolbar/>
-      {/*posts.map(post => (
-        post.title
-            ? (
-              <Post className={classes.post} data = {post} onClick ={() => history.push(`/details/${post.id}`,post)}/>
-            )
-            : null
-      ))*/}
       <GridList cols={2} spacing={12}>
           {tempUser ?
           posts.map(post => (
             post.title
                 ? (
-                  <GridListTile cols={2} rows={1}>
+                  <GridListTile style={{height:"200px", marginBottom:"30px"}} cols={2} rows={1}>
                     <Post data = {post} onClick ={() => history.push(`/details/${post.id}`,post)}/>
                   </GridListTile>
                 )
                 : null
           )): <Typography>Please sign in to view content!</Typography>}
       </GridList>
-       {/* <Grid container className={classes.post} justify="center" alignItems="stretch" direction="column" spacing={2} >
-          {user ?
-          posts.map(post => (
-            post.title
-                ? (
-                  <Post data = {post} onClick ={() => history.push(`/details/${post.id}`,post)}/>
-                )
-                : null
-          )): <Typography>Please sign in to view content!</Typography>}
-        </Grid>*/}
     </div>
   );
 }

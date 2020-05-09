@@ -15,6 +15,7 @@ const useStyles = makeStyles(theme => ({
       post:{
       },
       paper: {
+          padding:"10px",
           borderRadius: "5px",
           boxShadow: "0 5px 6px 0 rgba(118, 118, 118, 0.16)",
           height: "100%",
@@ -41,12 +42,12 @@ const useStyles = makeStyles(theme => ({
         alignSelf: 'stretch',
       },
       title: {
-        fontSize: '1.3rem',
+        fontSize: '24px',
         fontWeight: 800,
-        marginBottom: theme.spacing(0.5),
+        marginBottom: theme.spacing(0),
       },
       description: {
-        fontSize: '0.9rem',
+        fontSize: '12px',
         fontWeight: 300,
         marginBottom: theme.spacing(0.5),
       },
@@ -58,20 +59,20 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 700,
       },
       postImage: {
-        width: "50% !important",
-        height: "50% !important",
-        padding: theme.spacing(2),
-        marginLeft:theme.spacing(5)      },
+        width: "120px",
+        height: "120px",
+        padding: "8px 0px 0px 18px",
+        marginLeft:theme.spacing(1)      
+      },
       
 }));
 
 const PrettoSlider = withStyles(theme => ({
   root: {
     color: '#52af77',
-    height: theme.spacing(2),
-    width: "100px !important",
-    marginLeft:theme.spacing(6),
-    margin: theme.spacing(1)
+    height: theme.spacing(3),
+    width: "120px !important",
+    marginLeft:theme.spacing(3),
   },
   thumb: {
     height: 0,
@@ -88,12 +89,12 @@ const PrettoSlider = withStyles(theme => ({
   track: {
     color: theme.palette.legit.main,
     borderRadius: 4,
-    height: theme.spacing(2),
+    height: theme.spacing(3),
 
   },
   rail: {
     borderRadius: 4,
-    height: theme.spacing(2),
+    height: theme.spacing(3),
     color: theme.palette.primary.maize,
 
   },
@@ -105,13 +106,13 @@ export const Post = (props) => {
   const {title, score, description, numComments, author, createdDate} = props.data
   return (
         <Paper className={classes.paper}  style={{background: theme.palette.secondary.main}} elevation={6} onClick={props.onClick}>
-          <Grid container spacing={4}>
+          <Grid container item spacing={4}>
             <Grid item xs={2}>
               <Grid container spacing={0} justify="center" alignItems="flex-start" direction="column">
-                <Grid item xs={11} >
+                <Grid item xs={6} >
                   <Avatar className={classes.postImage} variant="square" alt="Placeholder" src={PlaceHolderImage}/>
                 </Grid>
-                <Grid item xs={1}>
+                <Grid item xs={6}>
                   <PrettoSlider disabled value={20} valueLabelDisplay="off" aria-label="pretto slider" defaultValue={0} />
                 </Grid>
               </Grid>
@@ -120,16 +121,16 @@ export const Post = (props) => {
               <Grid container justify="center" direction="column" spacing={3}>
                 <Grid item xs>
                   <Typography variant="caption">
-                    {author} <strong>•  </strong>  about {createdDate} <strong>•  </strong> {numComments}{' '}comments
+                  <strong>Posted by {author}•</strong>&nbsp; about {createdDate} <strong>•  </strong>&nbsp; {numComments}{' '}comments
                   </Typography>
                 </Grid>
                 <Grid item xs>
-                  <Typography variant="subtitle1" className={classes.title}>
+                  <Typography  className={classes.title}>
                     {title}
                   </Typography>
                 </Grid>
                 <Grid item xs>
-                  <Typography variant="h2" className={classes.description}>
+                  <Typography className={classes.description}>
                     {description}
                   </Typography>
                 </Grid>

@@ -37,8 +37,8 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     marginLeft: 0,
-    marginRight :theme.spacing(10),
-    width: '50%',
+    marginRight :theme.spacing(80),
+    width: '100px',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
       width: 'auto',

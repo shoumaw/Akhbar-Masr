@@ -3,26 +3,13 @@
 import React from 'react';
 import {makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import PlaceHolderImage from '../../../assets/images/post.png'
 import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
 import Slider from '@material-ui/core/Slider';
 
 
 const useStyles = makeStyles(theme => ({
-      post:{
-      },
-      paper: {
-          padding:"10px",
-          borderRadius: "5px",
-          boxShadow: "0 5px 6px 0 rgba(118, 118, 118, 0.16)",
-          height: "100%",
-          flexGrow:1,
-          marginRight:theme.spacing(30),
-          marginLeft:theme.spacing(30)
-        },
       score: {
         fontWeight: 700,
       },
@@ -102,10 +89,8 @@ const PrettoSlider = withStyles(theme => ({
 export const Post = (props) => {
 
   const classes = useStyles();
-  const theme = useTheme();
   const {title, score, description, numComments, author, createdDate} = props.data
   return (
-        <Paper className={classes.paper}  style={{background: theme.palette.secondary.main}} elevation={6} onClick={props.onClick}>
           <Grid container item spacing={4}>
             <Grid item xs={2}>
               <Grid container spacing={0} justify="center" alignItems="flex-start" direction="column">
@@ -137,7 +122,6 @@ export const Post = (props) => {
                 </Grid>
               </Grid>
             </Grid>
-        </Paper>
   );
 }
 

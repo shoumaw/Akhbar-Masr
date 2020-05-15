@@ -12,6 +12,7 @@ import ArrowBackRounded from '@material-ui/icons/ArrowBackRounded';
 import {Comment} from '../../components/common/postDetails/Comment'
 import {PostInfo} from '../../components/common/postDetails/PostInfo'
 import {PostContent} from '../../components/common/postDetails/PostContent'
+import {Post} from '../../components/common/postListing/Post'
 import { useLocation } from "react-router-dom";
 import { useAuth } from "../../components/hooks/useAuth";
 
@@ -19,6 +20,10 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     height:"100%"
+  },
+  post:{
+    marginLeft: "auto",
+    width : "75%",
   },
   text: {
     margin: theme.spacing(0.5),
@@ -37,6 +42,7 @@ const useStyles = makeStyles(theme => ({
   commentsSection:{
     display: 'flex',
     flexDirection: 'column',
+    paddingTop:"20px"
   }
 }));  
 
@@ -45,7 +51,9 @@ export const PostDetailsPage = (props) => {
   const {user} = useAuth();
   let tempUser = true
   const [comments, setComments] = useState([])
-  const {id, title, description, score, numComments, author, createdDate}  = useLocation().state;
+  const post = useLocation().state;
+  console.log("Hey", post)
+  const {id, title, description, score, numComments, author, createdDate}  = post
   useEffect( () => {
     if (!tempUser)
       return
@@ -66,13 +74,14 @@ export const PostDetailsPage = (props) => {
               <Typography className={classes.text}  variant="button">Go back to news page</Typography>
             </Button>
         </div>
-        <PostContent title={title} description={description}/>
-        <PostInfo author={author} createdDate={createdDate} score={score} numComments={numComments}/>
+        <div  className={classes.post}>
+          <Post data={post}/>
+        </div>
         <Divider variant="middle" />
         <div className={classes.commentsSection}>
-          <List dense>
+          <List>
             {comments && comments.map(comment => (
-              <Comment author={comment.author} ups={comment.ups} downs={comment.downs} description={comment.description}/>
+              <Comment author={comment.author} createdDate={comment.createdDate} numComments={comment.numComments} ups={comment.ups} downs={comment.downs} description={comment.description}/>
             ))}
           </List>
         </div>  

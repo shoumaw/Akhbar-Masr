@@ -13,7 +13,7 @@ export async function getPostsApi(user) {
 
   const subreddit = await r.getSubreddit('AkhbarMasr');
   console.log(subreddit)
-  const topPosts = await subreddit.getTop({time: 'all', limit: 3});
+  const topPosts = await subreddit.getTop({time: 'all', limit: 5});
   let data = [];    
 
   topPosts.forEach((post) => {
@@ -42,16 +42,28 @@ export async function getCommentsApi(user,postID) {
   const comments = await (await r.getSubmission(postID)).comments
   let data = []
   comments.forEach((comment)=>{
+    let utcMoment = moment.utc();
+    comment.created = comment.created * 1000
+    let duration = moment.duration(utcMoment.diff(comment.created));
+    let timeAgo = timeDifference(duration)
     data.push({
       id: comment.id,
       ups: comment.ups, 
       downs: comment.downs,
       description: comment.body,
       score: comment.score,
-      numComments: comment.num_comments,
-      author: comment.author.name
+      numComments: comment.replies.length,
+      author: comment.author.name,
+      createdDate:timeAgo
     })
   })
 
   return data
+};
+export async function submitPostApi(user) {
+  r.submitSelfpost({
+    subredditName: 'AkhbarMasr',
+    title: 'This is a selfpost',
+    text: 'This is the text body of the selfpost'
+  }).then(console.log)
 };
